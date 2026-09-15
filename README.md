@@ -1,2 +1,2 @@
 # CS35_Project
-The game-ish project made for CS35
+A game-ish project made for CS35
