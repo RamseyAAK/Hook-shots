@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
 
     public GameObject leftClaw;
     public GameObject rightClaw;
+
+    public RelativeJoint2D leftSpring;
+    public RelativeJoint2D rightSpring;
  
     private void Awake()
     {
@@ -37,20 +40,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 tempL = controls.Gameplay.LeftClaw.ReadValue<Vector2>();
+        // Vector2 tempL = controls.Gameplay.LeftClaw.ReadValue<Vector2>();
         // if (tempL != leftStick) 
         // {
-            leftClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            leftClaw.transform.localPosition = tempL;
-            leftStick = tempL;
+            // leftClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            // leftClaw.transform.localPosition = tempL;
+            // leftStick = tempL;
         // }
+
+        leftSpring.linearOffset = controls.Gameplay.LeftClaw.ReadValue<Vector2>();
         
-        Vector2 tempR = controls.Gameplay.RightClaw.ReadValue<Vector2>();
+        // Vector2 tempR = controls.Gameplay.RightClaw.ReadValue<Vector2>();
         // if (tempR != rightStick) 
         // {
-            rightClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            rightClaw.transform.localPosition = tempR;
-            rightStick = tempR;
+            // rightClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            // rightClaw.transform.localPosition = tempR;
+            // rightStick = tempR;
         // }
+
+        rightSpring.linearOffset = controls.Gameplay.RightClaw.ReadValue<Vector2>();
     }
 }
