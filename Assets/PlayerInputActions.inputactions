@@ -7,7 +7,7 @@
             "id": "1bfae4c4-6a21-4417-9f4b-2122a2b1e4ee",
             "actions": [
                 {
-                    "name": "RightClaw",
+                    "name": "RightAim",
                     "type": "Value",
                     "id": "b378257f-f056-4850-b34c-3035407289c8",
                     "expectedControlType": "Vector2",
@@ -17,10 +17,50 @@
                     "priority": 0
                 },
                 {
-                    "name": "LeftClaw",
+                    "name": "LeftAim",
                     "type": "Value",
                     "id": "e9636254-f624-43a5-8d37-10437c35b94e",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "FireRight",
+                    "type": "Button",
+                    "id": "26cb5c37-d986-47f8-84ee-70edc2bb0760",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "FireLeft",
+                    "type": "Button",
+                    "id": "efade728-aa29-4e54-a8f1-5667ac6a61aa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "ReelRight",
+                    "type": "Value",
+                    "id": "e9e9bc06-b472-4e88-a9be-468fac92b6cc",
+                    "expectedControlType": "Analog",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "ReelLeft",
+                    "type": "Value",
+                    "id": "7fd730a1-995b-45fb-9ba7-8dbfb5a5400a",
+                    "expectedControlType": "Analog",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true,
@@ -35,7 +75,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RightClaw",
+                    "action": "RightAim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -46,7 +86,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftClaw",
+                    "action": "LeftAim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5dc2cb92-ccbd-43f6-a21a-16bfcd837fcf",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5c8b30bd-c1c6-48df-a54d-adcd808d5aeb",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "FireLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "69796b21-9505-4cd8-ac74-9b63d5b276e0",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReelRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4143ca33-00d0-4af3-af0e-ec25d521502c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ReelLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

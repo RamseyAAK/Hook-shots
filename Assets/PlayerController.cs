@@ -3,34 +3,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    private PlayerInputActions controls;
-    private Vector2 leftStick;
-    private Vector2 rightStick;
-
-    private Vector2 defaultPosL;
-    private Vector2 defaultPosR;
-
     public GameObject leftClaw;
     public GameObject rightClaw;
 
     public RelativeJoint2D leftSpring;
     public RelativeJoint2D rightSpring;
- 
-    private void Awake()
-    {
-        // Instantiate the generated C# class layout
-        controls = new PlayerInputActions();
-    }
-
-    private void OnEnable()
-    {
-        controls.Gameplay.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Gameplay.Disable();
-    }
 
     void Start()
     {
@@ -40,24 +17,70 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Vector2 tempL = controls.Gameplay.LeftClaw.ReadValue<Vector2>();
-        // if (tempL != leftStick) 
-        // {
-            // leftClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            // leftClaw.transform.localPosition = tempL;
-            // leftStick = tempL;
-        // }
 
-        leftSpring.linearOffset = controls.Gameplay.LeftClaw.ReadValue<Vector2>();
+    }
+
+    private bool validatedInputValue<T>(InputAction.CallbackContext context, ref T value) where T : struct
+    {
+        try
+        {
+            value = context.ReadValue<T>();
+            return true;
+        }
+        catch
+        {
+            Debug.Log($"Type mismatch, Looking for: {typeof(T).Name}, Actual type: {context.valueType}");
+            return false;
+        }
+    }
+
+    public void RightFire(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            System.Single value = default;
+            if (validatedInputValue<System.Single>(context, ref value)) {
+                Debug.Log($"RightFire Value: {value}");
+            } else {
+                Debug.Log("Value is null");
+            } 
+        }
+    }
+
+    public void LeftFire(InputAction.CallbackContext context)
+    {
+        if (context.started) 
+        {
+            System.Single value = default;
+            if (validatedInputValue<System.Single>(context, ref value)) {
+                Debug.Log($"LeftFire Value: {value}");
+            } else {
+                Debug.Log("Value is null");
+            } 
+        }
+    }
+    
+    public void RightAim(InputAction.CallbackContext context)
+    {
+        Vector2 value = default;
+        if (validatedInputValue<Vector2>(context, ref value)) {
+            rightSpring.linearOffset = value;
+            Debug.Log($"RightAim Value: {value}");
+        } else {
+            Debug.Log("Value is null");
+        } 
         
-        // Vector2 tempR = controls.Gameplay.RightClaw.ReadValue<Vector2>();
-        // if (tempR != rightStick) 
-        // {
-            // rightClaw.transform.parent.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            // rightClaw.transform.localPosition = tempR;
-            // rightStick = tempR;
-        // }
+    }
 
-        rightSpring.linearOffset = controls.Gameplay.RightClaw.ReadValue<Vector2>();
+    public void LeftAim(InputAction.CallbackContext context)
+    {
+        Vector2 value = default;
+        if (validatedInputValue<Vector2>(context, ref value)) {
+            leftSpring.linearOffset = value;
+            Debug.Log($"LeftAim Value: {value}");
+        } else {
+            Debug.Log("Value is null");
+        } 
+        
     }
 }
