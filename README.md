@@ -19,7 +19,7 @@ Currently undecided. I have vague ideas of a puzzle room game where mechanics ar
 ### The Plan
 - [x] Input from controller
 - [x] Kinetic player body
-- [ ] Hook-shot functionality 
+- [x] Hook-shot functionality 
   - [ ] Maybe rope
   - [ ] Maybe instead grip at distance
 - [ ] Arena map for testing movement

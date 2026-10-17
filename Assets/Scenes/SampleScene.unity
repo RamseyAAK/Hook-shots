@@ -684,6 +684,8 @@ MonoBehaviour:
   rightClaw: {fileID: 958224288}
   leftSpring: {fileID: 936018613}
   rightSpring: {fileID: 936018614}
+  leftConnection: {fileID: 1141890413}
+  rightConnection: {fileID: 958224293}
 --- !u!254 &936018613
 RelativeJoint2D:
   m_ObjectHideFlags: 0
@@ -838,6 +840,7 @@ GameObject:
   - component: {fileID: 958224290}
   - component: {fileID: 958224291}
   - component: {fileID: 958224292}
+  - component: {fileID: 958224293}
   m_Layer: 3
   m_Name: RightClaw
   m_TagString: Untagged
@@ -982,6 +985,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!232 &958224293
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958224288}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 6
+  m_MaxDistanceOnly: 1
 --- !u!1 &1055334418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1183,7 @@ GameObject:
   - component: {fileID: 1141890410}
   - component: {fileID: 1141890411}
   - component: {fileID: 1141890412}
+  - component: {fileID: 1141890413}
   m_Layer: 3
   m_Name: LeftClaw
   m_TagString: Untagged
@@ -1304,6 +1328,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!232 &1141890413
+DistanceJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141890408}
+  m_Enabled: 0
+  serializedVersion: 4
+  m_EnableCollision: 1
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_BreakAction: 3
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 6
+  m_MaxDistanceOnly: 1
 --- !u!1 &1267974887
 GameObject:
   m_ObjectHideFlags: 0
