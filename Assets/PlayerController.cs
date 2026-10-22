@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
     public GameObject leftClaw;
@@ -15,12 +16,71 @@ public class PlayerController : MonoBehaviour
     private Vector2 leftAim = default;
     private Vector2 rightAim = default;
 
-    private float REACH = 6f;
+    public float hookshotReach = 6f;
+    public float armStrength = 100f;
+
+    public PhysicsMaterial2D frictionMaterial;
+    public PhysicsMaterial2D frictionlessMaterial;
+
+    [Header("Motility Toggles")]
+    public bool gravity = true;
+    public bool arm_mass = true;
+    public bool arm_collision = true;
+    public bool arm_friction = true;
+    public bool body_friction = true;
+
 
     
 
     void Start()
     {
+        leftSpring.maxForce = armStrength;
+        leftSpring.maxTorque = armStrength;
+        rightSpring.maxForce = armStrength;
+        rightSpring.maxTorque = armStrength;
+
+        Rigidbody2D main_rb = GetComponent<Rigidbody2D>();
+        Rigidbody2D left_rb = leftClaw.GetComponent<Rigidbody2D>();
+        Rigidbody2D right_rb = rightClaw.GetComponent<Rigidbody2D>();
+
+        if (gravity) {
+            main_rb.gravityScale = 1;
+            left_rb.gravityScale = 1;
+            right_rb.gravityScale = 1;
+        } else {
+            main_rb.gravityScale = 0;
+            left_rb.gravityScale = 0;
+            right_rb.gravityScale = 0;
+        }
+
+        if (arm_mass) {
+            left_rb.mass = 1;
+            right_rb.mass = 1;
+        } else {
+            left_rb.mass = 0;
+            right_rb.mass = 0;
+        }
+
+        if (!arm_collision) {
+            left_rb.excludeLayers = LayerMask.GetMask("Default");
+            right_rb.excludeLayers = LayerMask.GetMask("Default");
+        }
+
+        if (arm_friction) {
+            left_rb.sharedMaterial = frictionMaterial;
+            right_rb.sharedMaterial = frictionMaterial;
+        } else {
+            left_rb.sharedMaterial = frictionlessMaterial;
+            right_rb.sharedMaterial = frictionlessMaterial;
+        }
+
+        if (body_friction) {
+            main_rb.sharedMaterial = frictionMaterial;
+        } else {
+            main_rb.sharedMaterial = frictionlessMaterial;
+        }
+
+
 
     }
 
@@ -69,7 +129,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && rightAim.magnitude > 0.1) {
             System.Single value = default;
             if (validatedInputValue<System.Single>(context, ref value)) {
-                RaycastHit2D hit = HookTrace(rightClaw.transform.position, rightAim, REACH, true);
+                RaycastHit2D hit = HookTrace(rightClaw.transform.position, rightAim, hookshotReach, true);
                 if (hit.rigidbody) {
                     rightConnection.connectedBody = hit.rigidbody;
                     rightConnection.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
@@ -91,7 +151,7 @@ public class PlayerController : MonoBehaviour
         if (context.started && leftAim.magnitude > 0.1) {
             System.Single value = default;
             if (validatedInputValue<System.Single>(context, ref value)) {
-                RaycastHit2D hit = HookTrace(leftClaw.transform.position, leftAim, REACH, true);
+                RaycastHit2D hit = HookTrace(leftClaw.transform.position, leftAim, hookshotReach, true);
                 if (hit.rigidbody) {
                     leftConnection.connectedBody = hit.rigidbody;
                     leftConnection.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
