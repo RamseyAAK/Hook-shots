@@ -22,6 +22,12 @@ public class PlayerController : MonoBehaviour
     public PhysicsMaterial2D frictionMaterial;
     public PhysicsMaterial2D frictionlessMaterial;
 
+    public Material leftRope;
+    public Material rightRope;
+
+    private static readonly int _PointOneTwo = Shader.PropertyToID("_PointOneTwo");
+    private static readonly int _Length = Shader.PropertyToID("_Length");
+
     [Header("Motility Toggles")]
     public bool gravity = true;
     public bool arm_mass = true;
@@ -87,11 +93,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector4 oneTwo = default;
         if (leftConnection.connectedBody != null) {
+            oneTwo.Set(leftClaw.transform.position.x, leftClaw.transform.position.y, leftConnection.connectedBody.transform.TransformPoint(leftConnection.connectedAnchor).x, leftConnection.connectedBody.transform.TransformPoint(leftConnection.connectedAnchor).y);
+            leftRope.SetVector(_PointOneTwo, oneTwo);
             Debug.DrawLine(leftClaw.transform.position, leftConnection.connectedBody.transform.TransformPoint(leftConnection.connectedAnchor), Color.green);
         }
 
         if (rightConnection.connectedBody != null) {
+            oneTwo.Set(rightClaw.transform.position.x, rightClaw.transform.position.y, rightConnection.connectedBody.transform.TransformPoint(rightConnection.connectedAnchor).x, rightConnection.connectedBody.transform.TransformPoint(rightConnection.connectedAnchor).y);
+            rightRope.SetVector(_PointOneTwo, oneTwo);
             Debug.DrawLine(rightClaw.transform.position, rightConnection.connectedBody.transform.TransformPoint(rightConnection.connectedAnchor), Color.green);
         }
 
@@ -134,6 +145,7 @@ public class PlayerController : MonoBehaviour
                     rightConnection.connectedBody = hit.rigidbody;
                     rightConnection.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
                     rightConnection.distance = Vector2.Distance(hit.point, rightClaw.transform.position);
+                    rightRope.SetFloat(_Length, rightConnection.distance * 1.001f);
                     rightConnection.enabled = true;
                     Debug.Log(hit.rigidbody);
                 }
@@ -143,6 +155,7 @@ public class PlayerController : MonoBehaviour
         } else if (context.canceled && rightConnection.connectedBody != null) {
             rightConnection.enabled = false;
             rightConnection.connectedBody = null;
+            rightRope.SetFloat(_Length, 0.0f);
         }
     }
 
@@ -156,6 +169,7 @@ public class PlayerController : MonoBehaviour
                     leftConnection.connectedBody = hit.rigidbody;
                     leftConnection.connectedAnchor = hit.rigidbody.transform.InverseTransformPoint(hit.point);
                     leftConnection.distance = Vector2.Distance(hit.point, leftClaw.transform.position);
+                    leftRope.SetFloat(_Length, leftConnection.distance * 1.001f);
                     leftConnection.enabled = true;
                     Debug.Log(hit.rigidbody);
                 }
@@ -165,6 +179,7 @@ public class PlayerController : MonoBehaviour
         } else if (context.canceled && leftConnection.connectedBody != null) {
             leftConnection.enabled = false;
             leftConnection.connectedBody = null;
+            leftRope.SetFloat(_Length, 0.0f);
         }
     }
     
