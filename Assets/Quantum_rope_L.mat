@@ -42,12 +42,12 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Length: 1.78
+    - _Length: 0
     - _ZWrite: 0
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.34901962, g: 0.81960785, b: 0.99215686, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _PointOneTwo: {r: 1.65, g: 0.5, b: 0, a: 0}
+    - _PointOneTwo: {r: -11.100143, g: -3.4993725, b: -10.533221, a: -3.9770002}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

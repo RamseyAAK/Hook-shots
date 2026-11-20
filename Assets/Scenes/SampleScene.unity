@@ -2000,6 +2000,8 @@ MonoBehaviour:
   armStrength: 40
   frictionMaterial: {fileID: 6200000, guid: 29273e6f06eba3973b180095fff501bd, type: 2}
   frictionlessMaterial: {fileID: 6200000, guid: 1dff12bd0266fe8d7843ffb7a7beb35a, type: 2}
+  leftRope: {fileID: 2100000, guid: 2aac20721a46a1e0fafa89b061b98a76, type: 2}
+  rightRope: {fileID: 2100000, guid: d5051fd2ba363dfa08d7bc38d85654e3, type: 2}
   gravity: 1
   arm_mass: 1
   arm_collision: 1
